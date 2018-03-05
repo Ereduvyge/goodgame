@@ -1,0 +1,27 @@
+package strategy;
+
+public class Thing {
+
+	public int foodh;
+	public int foode;
+	public int cost;
+	public int space;
+	String name;
+	
+	Thing(String c){
+		this.name=c;
+	}
+	
+	public void setfh(int x) {
+		this.foodh=x;
+	}
+	public void seteh(int x) {
+		this.foode=x;
+	}
+	public void setcost(int x) {
+		this.cost=x;
+	}
+	public void setspace(int x) {
+		this.space=x;
+	}
+}
