@@ -1,0 +1,203 @@
+package strategy;
+
+import java.io.File;
+import java.util.Scanner;
+import java.util.Random;
+
+
+public class Event {
+
+	public int gameturn;
+	public int qcity;
+	public int qwizard;
+	public int qanimal;
+	public int qwoods;
+	public int qmetals;
+	public int qstone;
+	
+	
+	 
+	Map map = new Map();
+	
+	Human hero = new Human("hero");
+	
+	Human thief = new Human("");
+	Human zombie = new Human("");
+	Human darklord = new Human("");
+	Human cyborg = new Human("");
+	Human wizard = new Human("");
+	Human mayor = new Human("");
+	
+	
+	public void menu(){
+		   System.out.println("\n  Good Terrain \n>>>Play \n>>>Rules \n ");
+		   menusc();
+	}
+	
+	public void menusc(){
+	       Scanner sc = new Scanner(System.in);
+	       String  skate = sc.nextLine();
+	        
+	          switch(skate){
+	             case "play":
+	                play();
+	             break;
+	             
+	             case "rules":
+		            rules();
+		         break;
+	             
+	             default:
+	                menusc();
+	          }
+	       
+	       }
+	
+	public void rules() {
+		
+	}
+	
+	
+	public void stats() {
+		System.out.println("You have: \n"+hero.damage+" damage "+hero.health+" health "+hero.energy+" energy ");
+	}
+	
+	
+	public void play() {
+		hero.damage=10;
+		hero.health=100;
+		hero.energy=15;
+		gameturn = 0;
+		System.out.println("\n You are the hero in this good terrain! \n You can meet many locals, build the big house or do quests.\n Also you can create the stick of power and see what will happend. \n So, let's begin. \n Here is your map. \n It will expand.");
+		hero.emergence(map);
+		choose();
+	}
+	
+	public void choose(){
+		++gameturn;
+		System.out.println("\nTurn "+gameturn);
+		map.callmap();
+		stats();
+        System.out.println("\n What are you going to do? \n");
+        choosesc();
+	}  
+     
+	
+	public void choosesc() {
+        Scanner sc = new Scanner(System.in);
+        String scc = sc.nextLine();
+    
+       switch(scc){
+           case "use":
+           use();
+           case "goleft":
+           goleft();
+           break;
+           case "goright":
+           goright();
+           break;
+           case "goup":
+           goup();
+           break;
+           case "godown":
+           godown();
+           break;
+           default:
+           System.out.println("Once again");
+           choosesc();
+       }
+ }
+	
+	
+	public void use(){
+		   System.out.println("\nWhat do you want?");
+		   Scanner sc = new Scanner(System.in);
+		  
+	}
+	
+	 
+	public void goleft() {
+		if (hero.location == 0 || hero.location == 13 || hero.location == 26 || hero.location == 39 || hero.location ==52) {
+			System.out.println("\nYou can't go there");
+			choosesc();
+		}else{
+			hero.goleft(map);
+			if (map.was == 'x') {
+				newlocation();
+			}else{
+				location();
+			}
+		}
+	}
+	
+	
+    public void goright() {
+    	if (hero.location == 12 || hero.location == 25 || hero.location == 38 || hero.location == 51 || hero.location ==64) {
+			System.out.println("\nYou can't go there");
+			choosesc();
+		}else{
+			hero.goright(map);
+			if (map.was == 'x') {
+				newlocation();
+			}else{
+				location();
+			}
+		}
+	}
+	
+	
+    public void goup() {
+    	if (hero.location < 13) {
+			System.out.println("\nYou can't go there");
+			choosesc();
+		}else{
+			hero.goup(map);
+			if (map.was == 'x') {
+				newlocation();
+			}else{
+				location();
+			}
+		}
+	}
+    
+    
+    public void godown() {
+    	if (hero.location > 51) {
+			System.out.println("\nYou can't go there");
+			choosesc();
+		}else{
+			hero.godown(map);
+			if (map.was == 'x') {
+				newlocation();
+			}else{
+				location();
+			}
+		}
+    }
+    
+    
+    public void newlocation() {
+    	System.out.println("\nThere is new location: ");
+    	if (hero.location == 0 || hero.location == 12|| hero.location == 52 || hero.location == 64 ) {
+    		System.out.println("It is cave!");
+    		cave();
+    	}
+    	Random r = new Random();
+    	int x = r.nextInt(100);
+    	    		
+    	    		
+    	    		
+    }
+    
+    
+    
+    
+    public void location() {
+    	
+    }
+    
+    public void cave(){
+    	
+    }
+    
+}
