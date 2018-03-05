@@ -1,0 +1,28 @@
+package strategy;
+
+public class Animal {
+
+	public int damage;
+	public int health;
+	public int weight;
+	public int kcal;
+	
+	boolean domesticable;
+	
+	String name;
+	
+	Animal(String c){
+		this.name = c;
+	}
+	
+	public void eat(Thing t){
+		
+	}
+	
+	public void attackhuman(Human h) {
+		
+	}
+	
+	
+	
+}
