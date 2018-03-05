@@ -1,0 +1,11 @@
+package strategy;
+
+public class strategy {
+
+	public static void main(String[] args) {
+		
+		Event user = new Event();
+        user.menu();
+     }
+
+}
