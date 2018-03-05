@@ -1,0 +1,237 @@
+package strategy;
+
+public class Human{
+
+	public int damage;
+	public int health;
+	public int energy;
+	public int fullness;
+    public int money;
+    public int extradamage;
+	public int defence;
+	public int extraspace;
+	public int location;
+	public int qwood;
+	public int qstone;
+	public int qrowmeat;
+	public int qbakedmeat;
+	public int qed;
+	public int qpills;
+	public int qhw;
+	
+	public boolean hrowmeat;
+	public boolean hbakedmeat;
+	public boolean hwood;
+	public boolean hstone;
+	public boolean hed;
+	public boolean hpills;
+	public boolean hhw;
+	public boolean eqattack;
+	public boolean eqprotection;
+	public boolean eqbag;
+	public boolean pet;
+	public boolean livestock;
+	   
+	String eqattackname;
+	String eqprotectionname;
+	String eqbagname;
+	public String name;
+	public String petname;
+	public String livestockname;
+	
+	Human(String c){
+		this.name = c;
+	}
+	
+	public void seteqattackname(String s) {
+		this.eqattackname=s;
+	}
+	public void seteqprotectionname(String s) {
+		this.eqprotectionname=s;
+	}
+	public void seteqbagname(String s) {
+		this.eqbagname=s;
+	}
+	public void setname(String s) {
+		this.name=s;
+	}
+	public void setpetname(String s) {
+		this.petname=s;
+	}
+	public void setlivestockname(String s) {
+		this.livestockname=s;
+	}
+	
+	
+	public void sethrowmeat(Boolean b) {
+		this.hrowmeat=b;
+	}
+	public void sethbakedmeat(Boolean b) {
+		this.hbakedmeat=b;
+	}
+	public void sethed(Boolean b) {
+		this.hed=b;
+	}
+	public void sethpills(Boolean b) {
+		this.hpills=b;
+	}
+	public void sethhw(Boolean b) {
+		this.hhw=b;
+	}
+	public void sethwood(Boolean b) {
+		this.hwood=b;
+	}
+	public void sethstone(Boolean b) {
+		this.hstone=b;
+	}
+	public void seteqattack(Boolean b) {
+		this.eqattack=b;
+	}
+	public void seteqprotection(Boolean b) {
+		this.eqprotection=b;
+	}
+	public void seteqbag(Boolean b) {
+		this.eqbag=b;
+	}
+	public void setpet(Boolean b) {
+		this.pet=b;
+	}
+	public void setlivescott(Boolean b) {
+		this.livestock=b;
+	}
+	
+	
+	public void setqrowmeat(int a) {
+		this.qrowmeat = a;
+	}
+	public void setbakedmeat(int a) {
+		this.qbakedmeat = a;
+	}
+	public void setdamage(int a) {
+		this.damage = a;
+	}
+	public void sethealth(int a) {
+		this.health = a;
+	}
+	public void setenergy(int a) {
+		this.energy = a;
+	}
+	public void setfullness(int a) {
+		this.fullness = a;
+	}
+	public void setmoney(int a) {
+		this.money = a;
+	}
+	public void setlocation(int a) {
+		this.location = a;
+	}
+	public void setdefence(int a) {
+		this.defence = a;
+	}
+	public void setextradamage(int a) {
+		this.extradamage = a;
+	}
+	public void setextraspace(int a) {
+		this.extraspace = a;
+	}
+	public void setqwood(int a) {
+		this.qwood = a;
+	}
+	public void setqstone(int a) {
+		this.qstone = a;
+	}
+	public void setqpills(int a) {
+		this.qpills = a;
+	}
+	public void setqhw(int a) {
+		this.qhw = a;
+	}
+	public void setqed(int a) {
+		this.qed = a;
+	}
+	
+	
+	
+	public void emergence(Map m) {
+		setlocation(32);
+		m.changemap(32, 'I');
+	}
+	
+	public void goright(Map m) {
+		m.arr[location]= m.was;
+		setlocation(location+=1);
+		m.changemap(location, 'I');
+	}
+	
+	public void goleft(Map m) {
+		m.arr[location]= m.was;
+		setlocation(location-=1);
+		m.changemap(location, 'I');
+	}
+  
+	public void goup(Map m) {
+		m.arr[location]= m.was;
+		setlocation(location-=11);
+		m.changemap(location, 'I');
+	}
+	
+	public void godown(Map m) {
+		m.arr[location]= m.was;
+		setlocation(location+=11);
+		m.changemap(location, 'I');
+
+	}
+	
+	public void eat(Thing t){
+		System.out.println("You've eaten "+t.name);
+		setenergy(energy+t.foode);
+		sethealth(health+t.foodh);
+		System.out.println("Your health: "+health+" Your energy: "+energy);
+	}
+	
+	public void attackhuman(Human h) {
+		if (energy == 0) {
+		   System.out.println("Too tired!");
+	   }else if (energy>10) {
+		   int a = h.health-damage;
+		   h.health = a;
+	        energy-=1;
+	        if(h.health<1) {
+	        	System.out.println(h.name + " has died!" + "\n" + "Your Energy: " + energy);
+	        }else {
+	        	System.out.println(h.name + "'s Health: " + h.health + "\n" + "Your Energy: " + energy);
+	        }  
+	   }else if (energy<6) {
+		   int a = h.health-damage/3;
+		   h.health = a;
+	        energy-=1;
+	        if(h.health<1) {
+	        	System.out.println(h.name + " has died!" + "\n" + "Your Energy: " + energy);
+	        }else {
+	        	System.out.println(h.name + "'s Health: " + h.health + "\n" + "Your Energy: " + energy);
+	        }  
+	   }else {
+		    int a = h.health-damage/2;
+		    h.health = a;
+	        energy-=1;
+	        if(h.health<1) {
+	        	System.out.println(h.name + " has died!" + "\n" + "Your Energy: " + energy);
+	        }else {
+	        	System.out.println(h.name + "'s Health: " + h.health + "\n" + "Your Energy: " + energy);
+	        }  	   
+	   }
+	}
+	
+	public void attackme(Human h) {
+			   int a = h.health-damage;
+			   h.health = a;
+		       if(h.health<1) {
+		        	System.out.println("You died!");
+		        }else {
+		        	System.out.println("Your Health: " + h.health + "\n" + name + "'s Energy: " + energy);
+		        }  
+	}
+	
+	
+	
+}
